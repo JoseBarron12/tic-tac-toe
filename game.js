@@ -57,17 +57,27 @@ function createGameboard() {
     }
 
     const isLineEmpty = (indexOne, indexTwo, indexThree) => {
-            if (gameBoard[indexOne] == undefined || 
+        if (gameBoard[indexOne] == undefined || 
                 gameBoard[indexTwo] == undefined || 
                 gameBoard[indexThree] == undefined)
-            {
-                return true;
-            }
-            return false;
+        {
+            return true;
         }
+        return false;
+    }
+
+    const isLineFull = (indexOne, indexTwo, indexThree, symbol) => {
+        if (gameBoard[indexOne] == symbol && 
+            gameBoard[indexTwo] == symbol && 
+            gameBoard[indexThree] == symbol)
+        {
+            return true;
+        }
+        return false;
+    }
 
 
-    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty};
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull};
 }
 
 function createPlayer(playerName, playerNum, playerSymbol) {
@@ -85,6 +95,16 @@ function createGame(playerOne, playerTwo)
     const gamePlayerTwo = createPlayer(playerTwo, 2, "O");
     const game = createGameboard();
 
+    const winCheck = (function () {
+        const topHorizotal = () => {
+            if(game.isLineEmpty(0,1,2))
+            {
+                return false;
+            }
+
+        };
+    })();
+
     const playGame = (rounds) => {
         for(let i = 0; i < rounds; i++)
         {
@@ -95,6 +115,7 @@ function createGame(playerOne, playerTwo)
         game.addMove(gamePlayerTwo.playerSymbol, 0);
         console.log(game.displayBoard());
         console.log(game.isLineEmpty(0,1,5));
+        console.log(game.isLineFull(0, 1, 5, "X"));
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
         return messageOne + '\n' + messagetwo;
