@@ -20,7 +20,43 @@ function createGameboard() {
         return isValid;
     }
 
-    return{getCurrentGameBoard, addMove, validateMove};
+    const displayBoard = () => {
+        let rowDashes = "-".repeat(7);
+        let gameBoardOutput = rowDashes + "\n";
+        let j = 1;
+        let gameItem = "";
+        for(let i = 0; i < gameBoard.length; i++)
+        {
+            if(gameBoard[i] == undefined)
+            {
+                gameItem = "-";
+            }
+            else
+            {
+                gameItem = gameBoard[i];
+            }
+            
+            if(j == 1)
+            {
+                gameBoardOutput += `|${gameItem}|`;
+                j++;
+            }
+            else if (j == 2)
+            {
+                gameBoardOutput += `${gameItem}`;
+                j++;
+            }
+            else
+            {
+                gameBoardOutput += `|${gameItem}|` + "\n";
+                gameBoardOutput += rowDashes + "\n";
+                j = 1;
+            } 
+        }
+        return gameBoardOutput;
+    }
+
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard};
 }
 
 function createPlayer(playerName, playerNum) {
@@ -43,6 +79,9 @@ function createGame(playerOne, playerTwo)
             gamePlayerOne.updateScore();
             gamePlayerTwo.updateScore();
         }
+        game.addMove(gamePlayerOne.playerNum, 5);
+        game.addMove(gamePlayerTwo.playerNum, 0);
+        console.log(game.displayBoard());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
         return messageOne + '\n' + messagetwo;
