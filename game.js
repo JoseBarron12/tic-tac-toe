@@ -3,8 +3,8 @@ function createGameboard() {
 
     const getCurrentGameBoard = () => gameBoard;
     
-    const addMove = (playerNum, index) => {
-        gameBoard[index] = playerNum;
+    const addMove = (playerSymbol, index) => {
+        gameBoard[index] = playerSymbol;
     }
     
     const validateMove = (index) => {
@@ -59,18 +59,18 @@ function createGameboard() {
     return{getCurrentGameBoard, addMove, validateMove, displayBoard};
 }
 
-function createPlayer(playerName, playerNum) {
+function createPlayer(playerName, playerNum, playerSymbol) {
     let score = 0;
     const getScore = () => score;
     const updateScore = () => score++;
 
-    return {playerName, playerNum, getScore, updateScore};
+    return {playerName, playerNum, playerSymbol, getScore, updateScore};
 }
 
 function createGame(playerOne, playerTwo)
 {
-    const gamePlayerOne = createPlayer(playerOne, 1);
-    const gamePlayerTwo = createPlayer(playerTwo, 2);
+    const gamePlayerOne = createPlayer(playerOne, 1, "X");
+    const gamePlayerTwo = createPlayer(playerTwo, 2, "O");
     const game = createGameboard();
 
     const playGame = (rounds) => {
@@ -79,8 +79,8 @@ function createGame(playerOne, playerTwo)
             gamePlayerOne.updateScore();
             gamePlayerTwo.updateScore();
         }
-        game.addMove(gamePlayerOne.playerNum, 5);
-        game.addMove(gamePlayerTwo.playerNum, 0);
+        game.addMove(gamePlayerOne.playerSymbol, 5);
+        game.addMove(gamePlayerTwo.playerSymbol, 0);
         console.log(game.displayBoard());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
