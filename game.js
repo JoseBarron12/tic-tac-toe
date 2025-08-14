@@ -56,7 +56,7 @@ function createGameboard() {
         return gameBoardOutput;
     }
 
-    const isEmpty = (indexOne, indexTwo, indexThree) => {
+    const isLineEmpty = (indexOne, indexTwo, indexThree) => {
             if (gameBoard[indexOne] == undefined || 
                 gameBoard[indexTwo] == undefined || 
                 gameBoard[indexThree] == undefined)
@@ -67,7 +67,7 @@ function createGameboard() {
         }
 
 
-    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isEmpty};
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty};
 }
 
 function createPlayer(playerName, playerNum, playerSymbol) {
@@ -94,7 +94,7 @@ function createGame(playerOne, playerTwo)
         game.addMove(gamePlayerOne.playerSymbol, 5);
         game.addMove(gamePlayerTwo.playerSymbol, 0);
         console.log(game.displayBoard());
-        console.log(game.isEmpty(0,1,5));
+        console.log(game.isLineEmpty(0,1,5));
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
         return messageOne + '\n' + messagetwo;
