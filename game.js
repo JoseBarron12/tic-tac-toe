@@ -63,8 +63,9 @@ function createPlayer(playerName, playerNum, playerSymbol) {
     let score = 0;
     const getScore = () => score;
     const updateScore = () => score++;
+    const resetScore = () => score = 0;
 
-    return {playerName, playerNum, playerSymbol, getScore, updateScore};
+    return {playerName, playerNum, playerSymbol, getScore, updateScore, resetScore};
 }
 
 function createGame(playerOne, playerTwo)
