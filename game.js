@@ -9,7 +9,7 @@ function createGameboard() {
     
     const validateMove = (index) => {
         let isValid = true;
-        if (index < 0 || index > gameBoard.length)
+        if (index < 0 || index >= gameBoard.length)
         {
             isValid = false;
         }
@@ -31,8 +31,26 @@ function createPlayer(playerName, playerNum) {
     return {playerName, playerNum, getScore, updateScore};
 }
 
-const game = createGameboard();
+function createGame(playerOne, playerTwo)
+{
+    const gamePlayerOne = createPlayer(playerOne, 1);
+    const gamePlayerTwo = createPlayer(playerTwo, 2);
+    const game = createGameboard();
 
-console.log(game.validateMove(5));
-game.addMove(1, 5);
-console.log(game.validateMove(5));
+    const playGame = (rounds) => {
+        for(let i = 0; i < rounds; i++)
+        {
+            gamePlayerOne.updateScore();
+            gamePlayerTwo.updateScore();
+        }
+        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
+        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
+        return messageOne + '\n' + messagetwo;
+    }
+
+    return{playGame};
+}
+
+const game = createGame("Jay", "James");
+
+console.log(game.playGame(5));
