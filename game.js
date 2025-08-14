@@ -209,32 +209,42 @@ function createGame(playerOne, playerTwo)
             }
             return false
         };
-        
+
+        const checkAll = () => {
+            if( topHorizotal() || midHorizotal() || bottomHorizotal()
+                || leftVertical() || midVertical() || rightVertical()
+                || leftDiagonal() || rightDiagonal() )
+            {
+                return true;
+            }
+            return false;
+        }
         return{ topHorizotal, midHorizotal, bottomHorizotal,
                 leftVertical, midVertical, rightVertical,
-                leftDiagonal, rightDiagonal};
+                leftDiagonal, rightDiagonal, checkAll};
     })();
 
     const playGame = (rounds) => {
         for(let i = 0; i < rounds; i++)
         {
-            gamePlayerOne.updateScore();
-            gamePlayerTwo.updateScore();
+            game.addMove(gamePlayerOne.playerSymbol, 5);
+            game.addMove(gamePlayerTwo.playerSymbol, 0);
+            game.addMove(gamePlayerTwo.playerSymbol, 1);
+            game.addMove(gamePlayerTwo.playerSymbol, 2);
+            if(winCheck.checkAll())
+            {
+                console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
+                if(currentWinner == gamePlayerOne)
+                {
+                    gamePlayerOne.updateScore();
+                }
+                else
+                {
+                    gamePlayerTwo.updateScore();
+                }
+            }  
         }
-        game.addMove(gamePlayerOne.playerSymbol, 5);
-        game.addMove(gamePlayerTwo.playerSymbol, 0);
-        game.addMove(gamePlayerTwo.playerSymbol, 1);
-        game.addMove(gamePlayerTwo.playerSymbol, 2);
-        game.addMove(gamePlayerTwo.playerSymbol, 4);
-        game.addMove(gamePlayerTwo.playerSymbol, 8);
-        game.addMove(gamePlayerTwo.playerSymbol, 6);
         console.log(game.displayBoard());
-        console.log(winCheck.topHorizotal());
-        console.log(winCheck.midHorizotal());
-        console.log(winCheck.leftDiagonal());
-        console.log(winCheck.leftVertical());
-        console.log(winCheck.rightVertical());
-        console.log(winCheck.leftDiagonal());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
         return messageOne + '\n' + messagetwo;
