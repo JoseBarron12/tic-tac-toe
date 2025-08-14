@@ -76,8 +76,20 @@ function createGameboard() {
         return false;
     }
 
+    const isBoardFull = () =>
+    {
+        for(let i = 0; i < gameBoard.length; i++)
+        {
+            if(gameBoard[i] == undefined)
+            {
+                return false
+            }
+        }
+        return true;
+    }
 
-    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull};
+
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull};
 }
 
 function createPlayer(playerName, playerNum, playerSymbol) {
@@ -227,10 +239,15 @@ function createGame(playerOne, playerTwo)
     const playGame = (rounds) => {
         for(let i = 0; i < rounds; i++)
         {
-            game.addMove(gamePlayerOne.playerSymbol, 5);
             game.addMove(gamePlayerTwo.playerSymbol, 0);
             game.addMove(gamePlayerTwo.playerSymbol, 1);
-            game.addMove(gamePlayerTwo.playerSymbol, 2);
+            game.addMove(gamePlayerOne.playerSymbol, 2);
+            game.addMove(gamePlayerOne.playerSymbol, 3);
+            game.addMove(gamePlayerOne.playerSymbol, 4);
+            game.addMove(gamePlayerTwo.playerSymbol, 5);
+            game.addMove(gamePlayerTwo.playerSymbol, 6);
+            game.addMove(gamePlayerOne.playerSymbol, 7);
+            game.addMove(gamePlayerOne.playerSymbol, 8);
             if(winCheck.checkAll())
             {
                 console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
@@ -243,6 +260,11 @@ function createGame(playerOne, playerTwo)
                     gamePlayerTwo.updateScore();
                 }
             }  
+            if(game.isBoardFull())
+            {
+                console.log("NO WINNER TIEEE");
+            }
+
         }
         console.log(game.displayBoard());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
