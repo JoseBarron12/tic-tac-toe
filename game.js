@@ -5,22 +5,25 @@ function createGameboard() {
 const board = createGameboard();
 console.log(board.gameBoard);
 
-function createPlayer(name) {
-    const playerName = "Player: " + name;
-    
+function createPlayer(playerName, playerNum) {
     let score = 0;
     const getScore = () => score;
     const updateScore = () => score++;
 
-    return {playerName, getScore, updateScore};
+    return {playerName, playerNum, getScore, updateScore};
 }
 
-const playerOne = createPlayer("Jay");
+const playerOne = createPlayer("Jay", 1);
+const playerTwo = createPlayer("Brown", 2);
 
 playerOne.updateScore();
+playerTwo.updateScore();
 playerOne.updateScore();
+playerTwo.updateScore();
+playerOne.updateScore();
+playerTwo.updateScore();
+playerOne.updateScore();
+playerTwo.updateScore();
 
-console.log({
-    playerName: playerOne.playerName,
-    score: playerOne.getScore()
-});
+console.log(playerOne);
+console.log(playerTwo);
