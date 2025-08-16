@@ -63,6 +63,7 @@ small {font-size: 0.600rem; /* 9.6px */}
 body {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .header {
@@ -100,3 +101,16 @@ body {
   rotate: 330deg;
 }
 
+.gameboard {
+  width: max(500px, 75vmin);
+  height: max(500px, 75vmin);
+  border: 1px solid black;
+  align-self: center;
+}
+
+.game-info {
+  width: max(500px, 75vmin);
+  height: 100px;
+  border: 1px solid black;
+  align-self: center;
+}
