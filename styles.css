@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -57,3 +59,44 @@ small {font-size: 0.600rem; /* 9.6px */}
 #root, #__next {
   isolation: isolate;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+  padding: 0px 16px;
+}
+
+.title-text {
+  justify-self: center;
+}
+
+.title-text>h1 {
+  font-family: "Finger Paint", sans-serif;
+}
+
+.theme {
+  position: relative;
+  align-self: center;
+}
+
+.settings {
+  display: flex;
+}
+
+.icon {
+  width: 32px;
+  height: auto;
+}
+
+.dark {
+  position: absolute;
+  top: 0;
+  rotate: 330deg;
+}
+
