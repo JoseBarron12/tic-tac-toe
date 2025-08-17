@@ -236,7 +236,7 @@ function createGame(playerOne, playerTwo)
                 leftDiagonal, rightDiagonal, checkAll};
     })();
 
-    const displayBoard = () => {
+    const displayInitialBoard = () => {
         
         const gameBoard = document.querySelector(".gameboard");
 
@@ -249,46 +249,64 @@ function createGame(playerOne, playerTwo)
         }
     };
 
-    const playGame = (rounds) => {
-        for(let i = 0; i < rounds; i++)
-        {
-            game.addMove(gamePlayerTwo.playerSymbol, 0);
-            game.addMove(gamePlayerTwo.playerSymbol, 1);
-            game.addMove(gamePlayerOne.playerSymbol, 2);
-            game.addMove(gamePlayerOne.playerSymbol, 3);
-            game.addMove(gamePlayerOne.playerSymbol, 4);
-            game.addMove(gamePlayerTwo.playerSymbol, 5);
-            game.addMove(gamePlayerTwo.playerSymbol, 6);
-            game.addMove(gamePlayerOne.playerSymbol, 7);
-            game.addMove(gamePlayerOne.playerSymbol, 8);
-            if(winCheck.checkAll())
+    const displayCurrentBoard = () => {
+        const gameBoardItems = document.querySelectorAll(".board-item");
+        let currentBoardItem = 0;
+        const currentGameBoard = game.getCurrentGameBoard();
+        gameBoardItems.forEach(boardItem => {
+            if(boardItem.children.length == 0)
             {
-                console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
-                if(currentWinner == gamePlayerOne)
+                if(currentGameBoard[currentBoardItem] != undefined)
                 {
-                    gamePlayerOne.updateScore();
+                    boardItem.textContent = `${currentGameBoard[currentBoardItem]}`;
+                    console.log(currentGameBoard[currentBoardItem]);
                 }
-                else
-                {
-                    gamePlayerTwo.updateScore();
-                }
-            }  
-            if(game.isBoardFull())
-            {
-                console.log("NO WINNER TIEEE");
             }
+            currentBoardItem++;
+        });
+    }
 
+
+    const playGame = (rounds) => {
+        
+        displayInitialBoard();
+        game.addMove(gamePlayerTwo.playerSymbol, 0);
+        displayCurrentBoard();
+        game.addMove(gamePlayerTwo.playerSymbol, 1);
+        game.addMove(gamePlayerOne.playerSymbol, 2);
+        game.addMove(gamePlayerOne.playerSymbol, 3);
+        game.addMove(gamePlayerOne.playerSymbol, 4);
+        game.addMove(gamePlayerTwo.playerSymbol, 5);
+        game.addMove(gamePlayerTwo.playerSymbol, 6);
+        game.addMove(gamePlayerOne.playerSymbol, 7);
+        game.addMove(gamePlayerOne.playerSymbol, 8);
+        if(winCheck.checkAll())
+        {
+            console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
+            if(currentWinner == gamePlayerOne)
+            {
+                gamePlayerOne.updateScore();
+            }
+            else
+            {
+                gamePlayerTwo.updateScore();
+            }
+        }  
+        if(game.isBoardFull())
+        {
+            console.log("NO WINNER TIEEE");
         }
+
         console.log(game.displayBoard());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
         return messageOne + '\n' + messagetwo;
     }
 
-    return{playGame, displayBoard};
+    return{playGame, displayInitialBoard};
 }
 
 const game = createGame("Jay", "James");
 
 console.log(game.playGame(5));
-game.displayBoard();
+
