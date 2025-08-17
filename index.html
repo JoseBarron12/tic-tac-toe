@@ -53,6 +53,26 @@
                 <div class="player-two-score"></div>
             </div>
         </div>
+            
+        <dialog class="game-start" open>
+            <div class="setting-header">
+                <h4>Game Settings</h4>
+            </div>
+            <form  class="game-settings">
+                <div class="game-options">
+                    <label>
+                        <input type="radio" name="gamemode" value="two-player"id="two-player-choice" checked>
+                        <img src="./icons/two-player.svg" alt="two player choice" class="icon-choice">
+                    </label>
+                    <label>
+                        <input type="radio" name="gamemode" value="computer"  id="two-player-choice">
+                        <img src="./icons/robot.svg" alt="computer choice" class="icon-choice">
+                    </label>
+                </div>
+                <button class="submit">Start Game</button>
+            </form>
+        </dialog>
     </div>
+
 </body>
 </html>

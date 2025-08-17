@@ -115,7 +115,7 @@ body {
 
 .game-info {
   width: max(500px, 75vmin);
-  height: 150px;
+  height: 175px;
   border: 1px solid black;
   align-self: center;
   margin-bottom: 16px;
@@ -130,7 +130,7 @@ body {
 }
 
 .board-icon {
-  width: 150px;
+  width: 125px;
 }
 
 .x {
@@ -146,6 +146,7 @@ body {
   grid-template-columns: repeat(3,1fr);
   padding: 0px 16px;
   justify-items: center;
+  position: relative;
 }
 
 .player-info {
@@ -184,6 +185,55 @@ body {
 }
 
 .player-one-score, .player-two-score {
-  font-size: 3.366rem;
-  font-family: "Finger Paint", sans-serif;;
+  font-size: 4rem;
+  font-family: "Finger Paint", sans-serif;
+}
+
+.game-start {
+  height: 100%;
+  width: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-options {
+  display: flex;
+  justify-items: center;
+}
+
+.icon-choice {
+  width: 64px;
+  height: auto;
+  border: 1px solid black;
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+[type=radio] + img {
+  cursor: pointer;
+}
+
+[type=radio]:checked + img {
+  outline: 1px solid green;
+}
+.game-settings>button {
+  border: 1px solid black;
+  background: none;
+  padding: 8px;
+  font-family: "Finger Paint", sans-serif;
 }
