@@ -237,10 +237,13 @@ body {
   padding: 8px;
   font-family: "Finger Paint", sans-serif;
 }
-
+.game-settings>h5 {
+  font-family: "Finger Paint", sans-serif;
+}
 select {
   border: none;
   background: none;
+  font-family: "Finger Paint", sans-serif;
 }
 
 select::picker-icon {
