@@ -130,6 +130,13 @@ body {
 }
 
 .board-icon {
-  width: 250px;
-  filter: invert(90%) sepia(18%) saturate(16%) hue-rotate(201deg) brightness(105%) contrast(102%);
+  width: 150px;
+}
+
+.x {
+  filter: invert(12%) sepia(98%) saturate(5285%) hue-rotate(248deg) brightness(81%) contrast(100%);
+}
+
+.o {
+  filter: invert(19%) sepia(85%) saturate(2429%) hue-rotate(344deg) brightness(101%) contrast(96%);
 }

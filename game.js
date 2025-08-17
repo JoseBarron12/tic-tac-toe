@@ -257,11 +257,13 @@ function createGame(playerOne, playerTwo)
             if(symbol == "O")
             {
                 icon.setAttribute("src", "./icons/alpha-o.svg")
+                icon.classList.add("o");
                 parent.appendChild(icon);
             }
             else
             {
                 icon.setAttribute("src", "./icons/alpha-x.svg")
+                icon.classList.add("x");
                 parent.appendChild(icon);
             }
         }
@@ -289,13 +291,21 @@ function createGame(playerOne, playerTwo)
         game.addMove(gamePlayerTwo.playerSymbol, 0);
         displayCurrentBoard();
         game.addMove(gamePlayerTwo.playerSymbol, 1);
+        displayCurrentBoard();
         game.addMove(gamePlayerOne.playerSymbol, 2);
+        displayCurrentBoard();
         game.addMove(gamePlayerOne.playerSymbol, 3);
+        displayCurrentBoard();
         game.addMove(gamePlayerOne.playerSymbol, 4);
+        displayCurrentBoard();
         game.addMove(gamePlayerTwo.playerSymbol, 5);
+        displayCurrentBoard();
         game.addMove(gamePlayerTwo.playerSymbol, 6);
+        displayCurrentBoard();
         game.addMove(gamePlayerOne.playerSymbol, 7);
+        displayCurrentBoard();
         game.addMove(gamePlayerOne.playerSymbol, 8);
+        displayCurrentBoard();
         if(winCheck.checkAll())
         {
             console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
