@@ -77,7 +77,7 @@ body {
   justify-self: center;
 }
 
-.title-text>h1 {
+.title-text>h1,h4 {
   font-family: "Finger Paint", sans-serif;
 }
 
@@ -139,4 +139,16 @@ body {
 
 .o {
   filter: invert(19%) sepia(85%) saturate(2429%) hue-rotate(344deg) brightness(101%) contrast(96%);
+}
+
+.game-info {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 0px 16px;
+  justify-items: center;
+}
+
+
+.player-name>h4 {
+  font-family: "Finger Paint", sans-serif;
 }

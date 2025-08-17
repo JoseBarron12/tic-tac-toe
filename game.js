@@ -284,7 +284,7 @@ function createGame(playerOne, playerTwo)
         });
     }
 
-
+    
     const playGame = (rounds) => {
         
         displayInitialBoard();
