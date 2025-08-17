@@ -241,13 +241,13 @@ function createGame(playerOne, playerTwo)
         icon.classList.add("board-icon");
         if(symbol == "O")
         {
-            icon.setAttribute("src", "./icons/alpha-o.svg")
+            icon.setAttribute("src", "./icons/new-o.svg")
             icon.classList.add("o");
             parent.appendChild(icon);
         }
         else
         {
-            icon.setAttribute("src", "./icons/alpha-x.svg")
+            icon.setAttribute("src", "./icons/new-x.svg")
             icon.classList.add("x");
             parent.appendChild(icon);
         }

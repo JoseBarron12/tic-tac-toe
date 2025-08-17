@@ -148,7 +148,42 @@ body {
   justify-items: center;
 }
 
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
 
 .player-name>h4 {
   font-family: "Finger Paint", sans-serif;
+  display: flex;
+}
+
+.player-name>h5{
+  font-weight: 400;
+  font-family: "Finger Paint", sans-serif;
+}
+
+.player-name-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-one-symbol, .player-two-symbol
+{
+  width:1.421rem;
+  height: auto;
+}
+
+.player-one-score, .player-two-score {
+  font-size: 3.366rem;
+  font-family: "Finger Paint", sans-serif;;
 }
