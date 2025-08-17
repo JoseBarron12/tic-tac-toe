@@ -236,6 +236,23 @@ function createGame(playerOne, playerTwo)
                 leftDiagonal, rightDiagonal, checkAll};
     })();
 
+    const displayIcon = (symbol, parent) => {
+        const icon = document.createElement("img");
+        icon.classList.add("board-icon");
+        if(symbol == "O")
+        {
+            icon.setAttribute("src", "./icons/alpha-o.svg")
+            icon.classList.add("o");
+            parent.appendChild(icon);
+        }
+        else
+        {
+            icon.setAttribute("src", "./icons/alpha-x.svg")
+            icon.classList.add("x");
+            parent.appendChild(icon);
+        }
+    }
+
     const displayInitialBoard = () => {
         
         const gameBoard = document.querySelector(".gameboard");
@@ -249,24 +266,37 @@ function createGame(playerOne, playerTwo)
         }
     };
 
-    const displayCurrentBoard = () => {
+    const displayInitialGameInfo = () => {
         
-        const displayIcon = (symbol, parent) => {
-            const icon = document.createElement("img");
-            icon.classList.add("board-icon");
-            if(symbol == "O")
+        const displayPlayerInfo = (number) => {
+            let num = ""; 
+            let player;
+            if(number == 1)
             {
-                icon.setAttribute("src", "./icons/alpha-o.svg")
-                icon.classList.add("o");
-                parent.appendChild(icon);
+                num = "one";
+                player = gamePlayerOne;
             }
             else
             {
-                icon.setAttribute("src", "./icons/alpha-x.svg")
-                icon.classList.add("x");
-                parent.appendChild(icon);
+                num = "two";
+                player = gamePlayerTwo;
             }
+            
+            const playerName = document.querySelector(`.player-${num}-name`);
+            playerName.textContent = player.playerName;
+            
+            const playerSymbol = document.querySelector(`.player-${num}-symbol`);
+            displayIcon(player.playerSymbol, playerSymbol);
+            
+            const playerScore = document.querySelector(`.player-${num}-score`);
+            playerScore.textContent = player.getScore();
         }
+
+        displayPlayerInfo(gamePlayerOne.playerNum);
+        displayPlayerInfo(gamePlayerTwo.playerNum);
+    }
+
+    const displayCurrentBoard = () => {
         
         const gameBoardItems = document.querySelectorAll(".board-item");
         let currentBoardItem = 0;
@@ -284,9 +314,10 @@ function createGame(playerOne, playerTwo)
         });
     }
 
-    
+
     const playGame = (rounds) => {
         
+        displayInitialGameInfo();
         displayInitialBoard();
         game.addMove(gamePlayerTwo.playerSymbol, 0);
         displayCurrentBoard();
