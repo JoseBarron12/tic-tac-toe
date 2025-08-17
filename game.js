@@ -236,6 +236,19 @@ function createGame(playerOne, playerTwo)
                 leftDiagonal, rightDiagonal, checkAll};
     })();
 
+    const displayBoard = () => {
+        
+        const gameBoard = document.querySelector(".gameboard");
+
+        for(let i = 0; i < game.getCurrentGameBoard().length; i++)
+        {
+            const boardItem = document.createElement("div");
+            boardItem.classList.add("board-item");
+            boardItem.setAttribute("id", `${i}`);
+            gameBoard.appendChild(boardItem);
+        }
+    };
+
     const playGame = (rounds) => {
         for(let i = 0; i < rounds; i++)
         {
@@ -272,9 +285,10 @@ function createGame(playerOne, playerTwo)
         return messageOne + '\n' + messagetwo;
     }
 
-    return{playGame};
+    return{playGame, displayBoard};
 }
 
 const game = createGame("Jay", "James");
 
 console.log(game.playGame(5));
+game.displayBoard();
