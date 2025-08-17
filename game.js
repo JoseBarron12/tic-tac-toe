@@ -266,7 +266,7 @@ function createGame(playerOne, playerTwo)
         }
     };
 
-    const displayInitialGameInfo = () => {
+    const displayInitialGameInfo = (rounds) => {
         
         const displayPlayerInfo = (number) => {
             let num = ""; 
@@ -294,6 +294,9 @@ function createGame(playerOne, playerTwo)
 
         displayPlayerInfo(gamePlayerOne.playerNum);
         displayPlayerInfo(gamePlayerTwo.playerNum);
+
+        const roundsText = document.querySelector(".rounds");
+        roundsText.textContent = rounds;
     }
 
     const displayCurrentBoard = () => {
@@ -317,7 +320,7 @@ function createGame(playerOne, playerTwo)
 
     const playGame = (rounds) => {
         
-        displayInitialGameInfo();
+        displayInitialGameInfo(rounds);
         displayInitialBoard();
         game.addMove(gamePlayerTwo.playerSymbol, 0);
         displayCurrentBoard();
