@@ -123,4 +123,13 @@ body {
 
 .board-item {
   background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.board-icon {
+  width: 250px;
+  filter: invert(90%) sepia(18%) saturate(16%) hue-rotate(201deg) brightness(105%) contrast(102%);
 }

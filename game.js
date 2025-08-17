@@ -250,16 +250,32 @@ function createGame(playerOne, playerTwo)
     };
 
     const displayCurrentBoard = () => {
+        
+        const displayIcon = (symbol, parent) => {
+            const icon = document.createElement("img");
+            icon.classList.add("board-icon");
+            if(symbol == "O")
+            {
+                icon.setAttribute("src", "./icons/alpha-o.svg")
+                parent.appendChild(icon);
+            }
+            else
+            {
+                icon.setAttribute("src", "./icons/alpha-x.svg")
+                parent.appendChild(icon);
+            }
+        }
+        
         const gameBoardItems = document.querySelectorAll(".board-item");
         let currentBoardItem = 0;
         const currentGameBoard = game.getCurrentGameBoard();
         gameBoardItems.forEach(boardItem => {
             if(boardItem.children.length == 0)
             {
-                if(currentGameBoard[currentBoardItem] != undefined)
+                let symbol = currentGameBoard[currentBoardItem];
+                if(symbol != undefined)
                 {
-                    boardItem.textContent = `${currentGameBoard[currentBoardItem]}`;
-                    console.log(currentGameBoard[currentBoardItem]);
+                    displayIcon(symbol, boardItem);
                 }
             }
             currentBoardItem++;
