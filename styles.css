@@ -203,12 +203,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .game-options {
   display: flex;
   justify-items: center;
+  gap: 16px;
 }
 
 .icon-choice {
@@ -229,14 +230,17 @@ body {
 }
 
 [type=radio]:checked + img {
-  outline: 1px solid green;
+  scale: 1.1;
+  box-shadow: 1px 2px black;
 }
+
 .game-settings>button {
   border: 1px solid black;
   background: none;
   padding: 8px;
   font-family: "Finger Paint", sans-serif;
 }
+
 .game-settings>h5 {
   font-family: "Finger Paint", sans-serif;
 }
@@ -246,6 +250,7 @@ select {
   font-family: "Finger Paint", sans-serif;
 }
 
-select::picker-icon {
-  appearance: none;
+option:checked {
+  font-weight: bold;
 }
+
