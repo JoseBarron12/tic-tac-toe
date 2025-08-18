@@ -383,3 +383,8 @@ confirmSettingButton.addEventListener("click", (event) => {
     const gameMode = form.querySelector('[name="gamemode"]:checked');
     console.log(gameMode.value);
 });
+
+const settingsButton = document.querySelector(".setting");
+settingsButton.addEventListener("click", () => {
+    gameSetting.show();
+});
