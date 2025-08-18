@@ -404,3 +404,26 @@ settingsButton.addEventListener("click", () => {
     });
     
 });
+
+// random number between (min, max - 1)
+function getRandomNumRange(min, max) 
+{ 
+    while ( true )
+    {
+        let num = Math.floor(Math.random() * max);
+        if (num >= min)
+        {
+            return num;
+        }
+    }
+}
+
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
+
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
+console.log(getRandomNumRange(1,3));
