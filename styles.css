@@ -115,7 +115,7 @@ body {
 
 .game-info {
   width: max(500px, 75vmin);
-  height: 175px;
+  height: 170px;
   border: 1px solid black;
   align-self: center;
   margin-bottom: 16px;
@@ -203,7 +203,7 @@ dialog[open]{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .game-options {
