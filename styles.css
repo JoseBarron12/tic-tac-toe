@@ -189,7 +189,7 @@ body {
   font-family: "Finger Paint", sans-serif;
 }
 
-.game-start {
+dialog[open]{
   height: 100%;
   width: 100%;
   border: none;
@@ -237,8 +237,9 @@ body {
 .game-settings>button {
   border: 1px solid black;
   background: none;
-  padding: 8px;
+  padding: 4px;
   font-family: "Finger Paint", sans-serif;
+  margin-top: 4px;
 }
 
 .game-settings>h5 {

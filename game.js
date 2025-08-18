@@ -370,3 +370,16 @@ const game = createGame("Jay", "James");
 
 console.log(game.playGame(5));
 
+const gameSetting = document.querySelector(".game-start");
+
+const confirmSettingButton = document.querySelector(".submit-button");
+const form= document.querySelector(".game-settings");
+
+confirmSettingButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    gameSetting.close();
+    const rounds = form.querySelector('[name="rounds"]');
+    console.log(rounds.value);
+    const gameMode = form.querySelector('[name="gamemode"]:checked');
+    console.log(gameMode.value);
+});
