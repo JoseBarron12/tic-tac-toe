@@ -234,7 +234,7 @@ dialog[open]{
   box-shadow: 1px 2px black;
 }
 
-.game-settings>button {
+.game-buttons>button {
   border: 1px solid black;
   background: none;
   padding: 4px;
@@ -242,8 +242,8 @@ dialog[open]{
   margin-top: 4px;
 }
 
-.game-settings>button:hover {
-  scale: 1.1;
+.game-buttons>button:hover {
+  scale: 1.05;
   box-shadow: 1px 2px black;
 }
 

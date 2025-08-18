@@ -387,4 +387,17 @@ confirmSettingButton.addEventListener("click", (event) => {
 const settingsButton = document.querySelector(".setting");
 settingsButton.addEventListener("click", () => {
     gameSetting.show();
+    const gameButtons = document.querySelector(".game-buttons");
+    const exitButton = document.createElement("button");
+    exitButton.classList.add("exit-setting-button");
+    exitButton.textContent = "Cancel";
+    gameButtons.appendChild(exitButton);
+
+    const settingsExitButton = document.querySelector(".exit-setting-button");
+
+    settingsExitButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        gameSetting.close();
+    });
+    
 });
