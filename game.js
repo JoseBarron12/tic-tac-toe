@@ -377,10 +377,90 @@ const form= document.querySelector(".game-settings");
 
 confirmSettingButton.addEventListener("click", (event) => {
     event.preventDefault();
-    gameSetting.close();
+    
     const rounds = form.querySelector('[name="rounds"]');
-    console.log(rounds.value);
-    console.log(gameMode.value);
+    
+    const gameMode = form.querySelector('[name="gamemode"]:checked');
+
+    const playerOneName = form.querySelector('[name="player-one-name"]');
+    const playerOneSymbol = form.querySelector('[name="player-one-symbol"]');
+
+    playerOneName.classList.remove("user-valid");
+    playerOneName.classList.remove("user-invalid");
+
+    playerOneSymbol.classList.remove("user-valid");
+    playerOneSymbol.classList.remove("user-invalid");
+
+    const playerTwoName = form.querySelector('[name="player-two-name"]');
+    const playerTwoSymbol = form.querySelector('[name="player-two-symbol"]');
+
+    playerTwoName.classList.remove("user-valid");
+    playerTwoName.classList.remove("user-invalid");
+
+    playerTwoSymbol.classList.remove("user-valid");
+    playerTwoSymbol.classList.remove("user-invalid");
+
+    let inputValid = true;
+
+    if(gameMode.value == "computer")
+    {
+        if(playerOneName.value == "")
+        {
+            playerOneName.classList.add("user-invalid");
+            inputValid = false;
+        }
+        else
+        {
+            playerOneName.classList.add("user-valid"); 
+        }
+        playerOneSymbol.classList.add("user-valid");
+    }
+    else
+    {
+        if(playerOneName.value == "")
+        {
+            playerOneName.classList.add("user-invalid");
+            inputValid = false;
+        }
+        else
+        {
+            playerOneName.classList.add("user-valid"); 
+        }
+        
+        if(playerTwoName.value == "")
+        {
+            playerTwoName.classList.add("user-invalid");
+            inputValid = false;
+        }
+        else
+        {
+            playerTwoName.classList.add("user-valid"); 
+        }
+
+        if(playerOneSymbol.value == playerTwoSymbol.value)
+        {
+            inputValid = false;
+            playerTwoSymbol.classList.add("user-invalid");
+            playerOneSymbol.classList.add("user-invalid");
+        }
+        else
+        {
+            playerTwoSymbol.classList.add("user-valid");
+            playerOneSymbol.classList.add("user-valid");
+        }
+
+    }
+    if(inputValid)
+    {
+        gameSetting.close();
+        console.log(rounds.value);
+        console.log(gameMode.value);
+        console.log(playerOneName.value);
+        console.log(playerOneSymbol.value);
+        console.log(playerTwoName.value);
+        console.log(playerTwoSymbol.value);
+    }
+
 });
 
 

@@ -280,6 +280,7 @@ option:checked {
   border: none;
   width: 75px;
   border-bottom: 2px solid black;
+  padding-left: 2px;
 }
 .player-name-info>input:hover {
   outline: 2px solid black;
@@ -297,4 +298,18 @@ option:checked {
 .player-two-info:hover {
   outline: 2px solid black;
   border-radius: 5px;
+}
+
+.user-valid {
+  outline: 2px solid #00c896;
+  border-radius: 5px;
+}
+
+.user-invalid {
+  outline: 2px solid red;
+  border-radius: 5px;
+}
+
+.player-name-info {
+  margin-bottom: 8px;
 }
