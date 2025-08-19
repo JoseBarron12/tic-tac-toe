@@ -196,14 +196,14 @@ dialog[open]{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0px;
 }
 
 .game-settings {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .game-options {
@@ -216,6 +216,7 @@ dialog[open]{
   width: 48px;
   height: auto;
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 [type=radio] {
@@ -232,6 +233,7 @@ dialog[open]{
 [type=radio]:checked + img {
   scale: 1.1;
   box-shadow: 1px 2px black;
+  border-radius: 5px;
 }
 
 .game-buttons>button {
@@ -240,6 +242,7 @@ dialog[open]{
   padding: 4px;
   font-family: "Finger Paint", sans-serif;
   margin-top: 4px;
+  border-radius: 5px;
 }
 
 .game-buttons>button:hover {
@@ -258,4 +261,40 @@ select {
 
 option:checked {
   font-weight: bold;
+}
+
+.player-one-info {
+  position: absolute;
+  left: 8px;
+  font-family: "Finger Paint", sans-serif;
+  align-self: center;
+  padding: 4px;
+}
+
+.player-one-info:hover {
+  outline: 2px solid black;
+  border-radius: 5px;
+}
+
+.player-name-info>input {
+  border: none;
+  width: 75px;
+  border-bottom: 2px solid black;
+}
+.player-name-info>input:hover {
+  outline: 2px solid black;
+  border-radius: 5px;
+}
+
+.player-two-info {
+  position: absolute;
+  right: 8px;
+  font-family: "Finger Paint", sans-serif;
+  align-self: center;
+  padding: 4px;
+}
+
+.player-two-info:hover {
+  outline: 2px solid black;
+  border-radius: 5px;
 }

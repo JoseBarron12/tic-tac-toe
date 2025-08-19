@@ -380,11 +380,12 @@ confirmSettingButton.addEventListener("click", (event) => {
     gameSetting.close();
     const rounds = form.querySelector('[name="rounds"]');
     console.log(rounds.value);
-    const gameMode = form.querySelector('[name="gamemode"]:checked');
     console.log(gameMode.value);
 });
 
+
 const settingsButton = document.querySelector(".setting");
+
 settingsButton.addEventListener("click", () => {
     gameSetting.show();
     const gameButtons = document.querySelector(".game-buttons");
@@ -417,13 +418,3 @@ function getRandomNumRange(min, max)
         }
     }
 }
-
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
-
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
-console.log(getRandomNumRange(1,3));
