@@ -406,6 +406,23 @@ settingsButton.addEventListener("click", () => {
     
 });
 
+const gameMode = form.querySelectorAll('.icon-choice');
+const playerTwoInfo = form.querySelector(".player-two-info");
+gameMode.forEach(element => {
+    const icon = element.getAttribute("id");
+    element.addEventListener("click", () => {
+        if(icon == "computer")
+        {
+            playerTwoInfo.style.opacity = "0%";
+        }
+        else
+        {
+            playerTwoInfo.style.opacity = "100%";
+        }    
+    });
+});
+
+
 // random number between (min, max - 1)
 function getRandomNumRange(min, max) 
 { 
