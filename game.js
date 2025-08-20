@@ -111,6 +111,9 @@ function createPlayer(playerName, playerNum, playerSymbol) {
     return {playerName, playerNum, playerSymbol, getScore, updateScore, resetScore};
 }
 
+
+
+
 function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
 {
     const gamePlayerOne = createPlayer(playerOne, 1, playerOneSymbol);
@@ -332,6 +335,16 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         gameBoardTile.classList.add("tile-invalid");
     }
 
+    const displayCurrentPlayer = (playerNum) => {
+        const currentPlayer = document.querySelector(`[id="${playerNum}"].player-info`);
+        currentPlayer.classList.add("player-active");
+    }
+
+    const removePastPlayer = (playerNum) => {
+        const currentPlayer = document.querySelector(`[id="${playerNum}"].player-info`);
+        currentPlayer.classList.remove("player-active");
+    }   
+
     const playGame = (rounds) => {
         
         displayGameInfo(rounds);
@@ -339,6 +352,9 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
 
         let currentPlayer = gamePlayerOne;
         let roundsPlayed = 0;
+
+        displayCurrentPlayer(currentPlayer.playerNum);
+
 
         const gameBoardTiles = document.querySelectorAll(".board-item");
         gameBoardTiles.forEach(tile => {
@@ -353,8 +369,9 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
             displayPlayedTile(tileNum);
             displayCurrentBoard();
 
+            removePastPlayer(currentPlayer.playerNum);
             currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
-
+            displayCurrentPlayer(currentPlayer.playerNum);
             if(winCheck.checkAll())
             {
                 console.log(`WINNER: PLAYER ${currentWinner.playerName}`);

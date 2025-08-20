@@ -318,3 +318,8 @@ option:checked {
 .tile-invalid:hover {
   outline: 2px solid rgb(255, 0, 0);
 }
+
+.player-active {
+  outline: 2px solid black;
+  border-radius: 5px;
+}
