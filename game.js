@@ -99,7 +99,21 @@ function createGameboard() {
             });
         }
     }
-    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull, clearBoard};
+
+    const displayInitialBoard = () => {
+        
+        const gameBoard = document.querySelector(".gameboard");
+
+        for(let i = 0; i < getCurrentGameBoard().length; i++)
+        {
+            const boardItem = document.createElement("div");
+            boardItem.classList.add("board-item");
+            boardItem.setAttribute("id", `${i}`);
+            gameBoard.appendChild(boardItem);
+        }
+    };
+
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull, clearBoard, displayInitialBoard};
 }
 
 function createPlayer(playerName, playerNum, playerSymbol) {
@@ -114,11 +128,10 @@ function createPlayer(playerName, playerNum, playerSymbol) {
 
 
 
-function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
+function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game)
 {
     const gamePlayerOne = createPlayer(playerOne, 1, playerOneSymbol);
     const gamePlayerTwo = createPlayer(playerTwo, 2, playerTwoSymbol);
-    const game = createGameboard();
 
     let currentWinner;
 
@@ -265,19 +278,24 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
             parent.appendChild(icon);
         }
     }
-
-    const displayInitialBoard = () => {
+    
+    const displayCurrentBoard = () => {
         
-        const gameBoard = document.querySelector(".gameboard");
-
-        for(let i = 0; i < game.getCurrentGameBoard().length; i++)
-        {
-            const boardItem = document.createElement("div");
-            boardItem.classList.add("board-item");
-            boardItem.setAttribute("id", `${i}`);
-            gameBoard.appendChild(boardItem);
-        }
-    };
+        const gameBoardItems = document.querySelectorAll(".board-item");
+        let currentBoardItem = 0;
+        const currentGameBoard = game.getCurrentGameBoard();
+        gameBoardItems.forEach(boardItem => {
+            if(boardItem.children.length == 0)
+            {
+                let symbol = currentGameBoard[currentBoardItem];
+                if(symbol != undefined)
+                {
+                    displayIcon(symbol, boardItem);
+                }
+            }
+            currentBoardItem++;
+        });
+    }
 
     const displayGameInfo = (rounds) => {
         
@@ -312,24 +330,6 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         roundsText.textContent = rounds;
     }
 
-    const displayCurrentBoard = () => {
-        
-        const gameBoardItems = document.querySelectorAll(".board-item");
-        let currentBoardItem = 0;
-        const currentGameBoard = game.getCurrentGameBoard();
-        gameBoardItems.forEach(boardItem => {
-            if(boardItem.children.length == 0)
-            {
-                let symbol = currentGameBoard[currentBoardItem];
-                if(symbol != undefined)
-                {
-                    displayIcon(symbol, boardItem);
-                }
-            }
-            currentBoardItem++;
-        });
-    }
-
     const displayPlayedTile = (tileNum) => {
         const gameBoardTile = document.querySelector(`[id="${tileNum}"].board-item`);
         gameBoardTile.classList.add("tile-invalid");
@@ -348,7 +348,6 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
     const playGame = (rounds) => {
         
         displayGameInfo(rounds);
-        displayInitialBoard();
 
         let currentPlayer = gamePlayerOne;
         let roundsPlayed = 0;
@@ -413,8 +412,12 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         });
     }
 
-    return{playGame, displayInitialBoard};
+    return{playGame};
 }
+
+const gameBoard = createGameboard();
+gameBoard.displayInitialBoard();
+
 
 const gameSetting = document.querySelector(".game-start");
 
@@ -507,7 +510,7 @@ confirmSettingButton.addEventListener("click", (event) => {
         console.log(playerOneSymbol.value);
         if(!computer)
         {
-            const game = createGame(playerOneName.value, playerOneSymbol.value, playerTwoName.value, playerTwoSymbol.value);
+            const game = createGame(playerOneName.value, playerOneSymbol.value, playerTwoName.value, playerTwoSymbol.value, gameBoard);
             console.log(game.playGame(rounds.value));
         }
         else
@@ -517,7 +520,7 @@ confirmSettingButton.addEventListener("click", (event) => {
             {
                 computerSymbol = "O";
             }
-            const game = createGame(playerOneName.value, playerOneSymbol.value, "Computer", computerSymbol);
+            const game = createGame(playerOneName.value, playerOneSymbol.value, "Computer", computerSymbol, gameBoard);
             console.log(game.playGame(rounds.value));
         }
         
