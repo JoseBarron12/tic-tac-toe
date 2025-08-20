@@ -339,25 +339,28 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
                 {
                     currentPlayer = gamePlayerOne;
                 }
-            });
-        });
-        if(winCheck.checkAll())
-        {
-            console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
-            if(currentWinner == gamePlayerOne)
-            {
-                gamePlayerOne.updateScore();
-            }
-            else
-            {
-                gamePlayerTwo.updateScore();
-            }
-        }  
-        if(game.isBoardFull())
-        {
-            console.log("NO WINNER TIEEE");
-        }
 
+                if(winCheck.checkAll())
+                {
+                    console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
+                    if(currentWinner == gamePlayerOne)
+                    {
+                        gamePlayerOne.updateScore();
+                        displayInitialGameInfo(rounds);
+                    }
+                    else
+                    {
+                        gamePlayerTwo.updateScore();
+                        displayInitialGameInfo(rounds);
+                    }
+                }  
+                if(game.isBoardFull())
+                {
+                    console.log("NO WINNER TIEEE");
+                }
+                });
+        });
+        
         console.log(game.displayBoard());
         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
