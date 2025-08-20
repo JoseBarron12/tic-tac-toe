@@ -71,6 +71,7 @@ body {
   justify-content: space-between;
   border: 1px solid;
   padding: 0px 16px;
+  width: 100vw;
 }
 
 .title-text {
@@ -102,8 +103,8 @@ body {
 }
 
 .gameboard {
-  width: max(500px, 75vmin);
-  height: max(500px, 70vmin);
+  width: max(600px, 75vmin);
+  height: max(500px, 68vmin);
   border: 1px solid black;
   align-self: center;
   display: grid;
@@ -114,7 +115,7 @@ body {
 }
 
 .game-info {
-  width: max(500px, 75vmin);
+  width: max(600px, 75vmin);
   height: 170px;
   border: 1px solid black;
   align-self: center;
