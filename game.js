@@ -321,24 +321,26 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         
         displayInitialGameInfo(rounds);
         displayInitialBoard();
-        game.addMove(gamePlayerTwo.playerSymbol, 0);
-        displayCurrentBoard();
-        game.addMove(gamePlayerTwo.playerSymbol, 1);
-        displayCurrentBoard();
-        game.addMove(gamePlayerOne.playerSymbol, 2);
-        displayCurrentBoard();
-        game.addMove(gamePlayerOne.playerSymbol, 3);
-        displayCurrentBoard();
-        game.addMove(gamePlayerOne.playerSymbol, 4);
-        displayCurrentBoard();
-        game.addMove(gamePlayerTwo.playerSymbol, 5);
-        displayCurrentBoard();
-        game.addMove(gamePlayerTwo.playerSymbol, 6);
-        displayCurrentBoard();
-        game.addMove(gamePlayerOne.playerSymbol, 7);
-        displayCurrentBoard();
-        game.addMove(gamePlayerOne.playerSymbol, 8);
-        displayCurrentBoard();
+
+        let currentPlayer = gamePlayerOne;
+
+        const gameBoardTile = document.querySelectorAll(".board-item");
+        gameBoardTile.forEach(tile => {
+            tile.addEventListener("click", () => {
+                const tileNum = tile.getAttribute("id");
+                game.addMove(currentPlayer.playerSymbol, tileNum);
+                displayCurrentBoard();
+
+                if(currentPlayer == gamePlayerOne)
+                {
+                    currentPlayer = gamePlayerTwo;
+                }
+                else
+                {
+                    currentPlayer = gamePlayerOne;
+                }
+            });
+        });
         if(winCheck.checkAll())
         {
             console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
