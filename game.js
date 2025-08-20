@@ -125,9 +125,6 @@ function createPlayer(playerName, playerNum, playerSymbol) {
     return {playerName, playerNum, playerSymbol, getScore, updateScore, resetScore};
 }
 
-
-
-
 function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game)
 {
     const gamePlayerOne = createPlayer(playerOne, 1, playerOneSymbol);
@@ -317,7 +314,10 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             playerName.textContent = player.playerName;
             
             const playerSymbol = document.querySelector(`.player-${num}-symbol`);
-            displayIcon(player.playerSymbol, playerSymbol);
+            if(playerSymbol.children.length == 0)
+            {
+                displayIcon(player.playerSymbol, playerSymbol);
+            }
             
             const playerScore = document.querySelector(`.player-${num}-score`);
             playerScore.textContent = player.getScore();
