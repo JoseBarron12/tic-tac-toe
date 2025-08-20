@@ -101,10 +101,10 @@ function createPlayer(playerName, playerNum, playerSymbol) {
     return {playerName, playerNum, playerSymbol, getScore, updateScore, resetScore};
 }
 
-function createGame(playerOne, playerTwo)
+function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
 {
-    const gamePlayerOne = createPlayer(playerOne, 1, "X");
-    const gamePlayerTwo = createPlayer(playerTwo, 2, "O");
+    const gamePlayerOne = createPlayer(playerOne, 1, playerOneSymbol);
+    const gamePlayerTwo = createPlayer(playerTwo, 2, playerTwoSymbol);
     const game = createGameboard();
 
     let currentWinner;
@@ -317,7 +317,6 @@ function createGame(playerOne, playerTwo)
         });
     }
 
-
     const playGame = (rounds) => {
         
         displayInitialGameInfo(rounds);
@@ -366,10 +365,6 @@ function createGame(playerOne, playerTwo)
     return{playGame, displayInitialBoard};
 }
 
-const game = createGame("Jay", "James");
-
-console.log(game.playGame(5));
-
 const gameSetting = document.querySelector(".game-start");
 
 const confirmSettingButton = document.querySelector(".submit-button");
@@ -401,6 +396,7 @@ confirmSettingButton.addEventListener("click", (event) => {
     playerTwoSymbol.classList.remove("user-invalid");
 
     let inputValid = true;
+    let computer = false;
 
     if(gameMode.value == "computer")
     {
@@ -414,6 +410,7 @@ confirmSettingButton.addEventListener("click", (event) => {
             playerOneName.classList.add("user-valid"); 
         }
         playerOneSymbol.classList.add("user-valid");
+        computer = true;
     }
     else
     {
@@ -457,8 +454,23 @@ confirmSettingButton.addEventListener("click", (event) => {
         console.log(gameMode.value);
         console.log(playerOneName.value);
         console.log(playerOneSymbol.value);
-        console.log(playerTwoName.value);
-        console.log(playerTwoSymbol.value);
+        if(!computer)
+        {
+            const game = createGame(playerOneName.value, playerOneSymbol.value, playerTwoName.value, playerTwoSymbol.value);
+            console.log(game.playGame(rounds.value));
+        }
+        else
+        {
+            let computerSymbol = "X";
+            if(playerOneSymbol.value == "X")
+            {
+                computerSymbol = "O";
+            }
+            const game = createGame(playerOneName.value, playerOneSymbol.value, "Computer", computerSymbol);
+            console.log(game.playGame(rounds.value));
+        }
+        
+
     }
 
 });
