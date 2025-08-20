@@ -95,6 +95,7 @@ function createGameboard() {
         {
             gameBoardTiles.forEach(tile => {
                 tile.replaceChildren();
+                tile.classList.remove("tile-invalid");
             });
         }
     }
@@ -326,6 +327,11 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         });
     }
 
+    const displayPlayedTile = (tileNum) => {
+        const gameBoardTile = document.querySelector(`[id="${tileNum}"].board-item`);
+        gameBoardTile.classList.add("tile-invalid");
+    }
+
     const playGame = (rounds) => {
         
         displayGameInfo(rounds);
@@ -334,22 +340,20 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         let currentPlayer = gamePlayerOne;
         let roundsPlayed = 0;
 
-        const gameBoardTile = document.querySelectorAll(".board-item");
-        gameBoardTile.forEach(tile => {
+        const gameBoardTiles = document.querySelectorAll(".board-item");
+        gameBoardTiles.forEach(tile => {
             
             tile.addEventListener("click", () => {
             const tileNum = tile.getAttribute("id");
+            if(!game.validateMove(tileNum))
+            {
+                return;
+            }
             game.addMove(currentPlayer.playerSymbol, tileNum);
+            displayPlayedTile(tileNum);
             displayCurrentBoard();
 
-            if(currentPlayer == gamePlayerOne)
-            {
-                currentPlayer = gamePlayerTwo;
-            }
-            else
-            {
-                currentPlayer = gamePlayerOne;
-            }
+            currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
 
             if(winCheck.checkAll())
             {

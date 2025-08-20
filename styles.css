@@ -314,3 +314,7 @@ option:checked {
 .player-name-info {
   margin-bottom: 8px;
 }
+
+.tile-invalid:hover {
+  outline: 2px solid rgb(255, 0, 0);
+}
