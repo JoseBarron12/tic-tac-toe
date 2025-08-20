@@ -88,8 +88,17 @@ function createGameboard() {
         return true;
     }
 
-
-    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull};
+    const clearBoard = () => {
+        gameBoard.fill(undefined);
+        const gameBoardTiles = document.querySelectorAll(".board-item");
+        if(gameBoardTiles != null)
+        {
+            gameBoardTiles.forEach(tile => {
+                tile.replaceChildren();
+            });
+        }
+    }
+    return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull, clearBoard};
 }
 
 function createPlayer(playerName, playerNum, playerSymbol) {
@@ -266,7 +275,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
         }
     };
 
-    const displayInitialGameInfo = (rounds) => {
+    const displayGameInfo = (rounds) => {
         
         const displayPlayerInfo = (number) => {
             let num = ""; 
@@ -319,40 +328,61 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
 
     const playGame = (rounds) => {
         
-        displayInitialGameInfo(rounds);
+        displayGameInfo(rounds);
         displayInitialBoard();
 
         let currentPlayer = gamePlayerOne;
+        let roundsPlayed = 0;
 
         const gameBoardTile = document.querySelectorAll(".board-item");
         gameBoardTile.forEach(tile => {
+            
             tile.addEventListener("click", () => {
-                const tileNum = tile.getAttribute("id");
-                game.addMove(currentPlayer.playerSymbol, tileNum);
-                displayCurrentBoard();
+            const tileNum = tile.getAttribute("id");
+            game.addMove(currentPlayer.playerSymbol, tileNum);
+            displayCurrentBoard();
 
-                if(currentPlayer == gamePlayerOne)
+            if(currentPlayer == gamePlayerOne)
+            {
+                currentPlayer = gamePlayerTwo;
+            }
+            else
+            {
+                currentPlayer = gamePlayerOne;
+            }
+
+            if(winCheck.checkAll())
+            {
+                console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
+                if(currentWinner == gamePlayerOne)
                 {
-                    currentPlayer = gamePlayerTwo;
+                    gamePlayerOne.updateScore();
+                    displayGameInfo(rounds);
+                    roundsPlayed++;
+                    game.clearBoard();
+                    displayCurrentBoard();
+                    if(roundsPlayed == rounds)
+                    {
+                        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
+                        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
+                        return messageOne + '\n' + messagetwo;
+                    }
+                    
                 }
                 else
                 {
-                    currentPlayer = gamePlayerOne;
+                    gamePlayerTwo.updateScore();
+                    displayGameInfo(rounds);
+                    roundsPlayed++;
+                    game.clearBoard();
+                    displayCurrentBoard();
+                    if(roundsPlayed == rounds)
+                    {
+                        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
+                        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
+                        return messageOne + '\n' + messagetwo;
+                    }
                 }
-
-                if(winCheck.checkAll())
-                {
-                    console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
-                    if(currentWinner == gamePlayerOne)
-                    {
-                        gamePlayerOne.updateScore();
-                        displayInitialGameInfo(rounds);
-                    }
-                    else
-                    {
-                        gamePlayerTwo.updateScore();
-                        displayInitialGameInfo(rounds);
-                    }
                 }  
                 if(game.isBoardFull())
                 {
@@ -360,11 +390,6 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol )
                 }
                 });
         });
-        
-        console.log(game.displayBoard());
-        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
-        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
-        return messageOne + '\n' + messagetwo;
     }
 
     return{playGame, displayInitialBoard};
