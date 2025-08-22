@@ -345,6 +345,17 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         currentPlayer.classList.remove("player-active");
     }   
 
+    const displayWinWindow = (winner, loser) => {
+        const winWindow = document.querySelector(".win-window");
+        const winnerMsg = document.querySelector(".win-window>h3");
+        const winnerInfoMsg = document.querySelector(".win-window>p");
+        
+        winnerMsg.textContent = `Congratulations Player ${winner.playerNum}`;
+        winnerInfoMsg.textContent = `[Player ${winner.playerNum}]: ${winner.playerName} beat [Player ${loser.playerNum}]: ${loser.playerName}\n With a score of ${winner.getScore()}:${loser.getScore()}`;
+        winWindow.show();
+    }
+
+
     const playGame = (rounds) => {
         
         displayGameInfo(rounds);
@@ -385,6 +396,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     {
                         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
                         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
+                        displayWinWindow(gamePlayerOne, gamePlayerTwo);
                         return messageOne + '\n' + messagetwo;
                     }
                     
@@ -400,6 +412,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     {
                         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
                         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
+                        displayWinWindow(gamePlayerTwo, gamePlayerOne);
                         return messageOne + '\n' + messagetwo;
                     }
                 }

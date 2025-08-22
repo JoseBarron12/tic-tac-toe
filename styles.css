@@ -336,3 +336,8 @@ option:checked {
   justify-self: center;
   gap: 0px;
 }
+
+
+.win-window>p {
+  white-space: pre-wrap;
+}
