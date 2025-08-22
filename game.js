@@ -349,10 +349,16 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         const winWindow = document.querySelector(".win-window");
         const winnerMsg = document.querySelector(".win-window>h3");
         const winnerInfoMsg = document.querySelector(".win-window>p");
-        
+        const winnerWindowCloseBtn = document.querySelector(".close-win-window");
+
         winnerMsg.textContent = `Congratulations Player ${winner.playerNum}`;
         winnerInfoMsg.textContent = `[Player ${winner.playerNum}]: ${winner.playerName} beat [Player ${loser.playerNum}]: ${loser.playerName}\n With a score of ${winner.getScore()}:${loser.getScore()}`;
         winWindow.show();
+
+        winnerWindowCloseBtn.addEventListener("click", () => {
+            winWindow.close();
+        });
+
     }
 
 
