@@ -408,12 +408,21 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
 
         displayCurrentPlayer(currentPlayer.playerNum);
 
+        let roundDone = false;
 
         const gameBoardTiles = document.querySelectorAll(".board-item");
         gameBoardTiles.forEach(tile => {
             
             tile.addEventListener("click", () => {
             const tileNum = tile.getAttribute("id");
+            
+            if(roundDone)
+            {
+                gameBoard.clearBoard();
+                displayCurrentBoard();
+                roundDone = false;
+            }
+
             if(!game.validateMove(tileNum))
             {
                 return;
@@ -433,7 +442,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     gamePlayerOne.updateScore();
                     displayGameInfo(rounds);
                     roundsPlayed++;
-                    displayCurrentBoard();
+                    roundDone = true;
                     if(roundsPlayed == rounds)
                     {
                         displayWinWindow(gamePlayerOne, gamePlayerTwo, rounds);
@@ -446,7 +455,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     gamePlayerTwo.updateScore();
                     displayGameInfo(rounds);
                     roundsPlayed++;
-                    displayCurrentBoard();
+                    roundDone = true;
                     if(roundsPlayed == rounds)
                     {
                         displayWinWindow(gamePlayerTwo, gamePlayerOne, rounds);
@@ -554,27 +563,18 @@ confirmSettingButton.addEventListener("click", (event) => {
     if(inputValid)
     {
         gameSetting.close();
-        console.log(rounds.value);
-        console.log(gameMode.value);
-        console.log(playerOneName.value);
-        console.log(playerOneSymbol.value);
         if(!computer)
         {
             const game = createGame(playerOneName.value, playerOneSymbol.value, playerTwoName.value, playerTwoSymbol.value, gameBoard);
-            console.log(game.playGame(rounds.value));
+            game.playGame(rounds.value);
         }
         else
         {
-            let computerSymbol = "X";
-            if(playerOneSymbol.value == "X")
-            {
-                computerSymbol = "O";
-            }
+            let computerSymbol = (playerOneSymbol.value == "X") ? "O" : "X";
             const game = createGame(playerOneName.value, playerOneSymbol.value, "Computer", computerSymbol, gameBoard);
-            console.log(game.playGame(rounds.value));
+            game.playGame(rounds.value);
         }
         
-
     }
 
 });
