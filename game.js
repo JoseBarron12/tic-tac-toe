@@ -232,12 +232,12 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         };
         
         const rightDiagonal = () => {
-            if(game.isLineFull(0,4,8, gamePlayerOne.playerSymbol))
+            if(game.isLineFull(2,4,6, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
                 return true;
             }
-            else if (game.isLineFull(3,4,6, gamePlayerTwo.playerSymbol))
+            else if (game.isLineFull(2,4,6, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
                 return true;
@@ -406,10 +406,8 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     displayCurrentBoard();
                     if(roundsPlayed == rounds)
                     {
-                        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
-                        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
                         displayWinWindow(gamePlayerOne, gamePlayerTwo, rounds);
-                        return messageOne + '\n' + messagetwo;
+                        roundsPlayed = 0;
                     }
                     
                 }
@@ -421,10 +419,8 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     displayCurrentBoard();
                     if(roundsPlayed == rounds)
                     {
-                        let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
-                        let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
                         displayWinWindow(gamePlayerTwo, gamePlayerOne, rounds);
-                        return messageOne + '\n' + messagetwo;
+                        roundsPlayed = 0;
                     }
                 }
                 }  
