@@ -335,6 +335,7 @@ option:checked {
   align-self: center;
   justify-self: center;
   gap: 0px;
+  z-index: 999;
 }
 
 

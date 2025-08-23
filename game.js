@@ -345,7 +345,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         currentPlayer.classList.remove("player-active");
     }   
 
-    const displayWinWindow = (winner, loser) => {
+    const displayWinWindow = (winner, loser, rounds) => {
         const winWindow = document.querySelector(".win-window");
         const winnerMsg = document.querySelector(".win-window>h3");
         const winnerInfoMsg = document.querySelector(".win-window>p");
@@ -357,10 +357,17 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
 
         winnerWindowCloseBtn.addEventListener("click", () => {
             winWindow.close();
+            resetGame();
+            displayGameInfo(rounds);
         });
 
     }
 
+    const resetGame = () => {
+        game.clearBoard();
+        gamePlayerOne.resetScore();
+        gamePlayerTwo.resetScore();
+    }
 
     const playGame = (rounds) => {
         
@@ -396,13 +403,12 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     gamePlayerOne.updateScore();
                     displayGameInfo(rounds);
                     roundsPlayed++;
-                    game.clearBoard();
                     displayCurrentBoard();
                     if(roundsPlayed == rounds)
                     {
                         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
                         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
-                        displayWinWindow(gamePlayerOne, gamePlayerTwo);
+                        displayWinWindow(gamePlayerOne, gamePlayerTwo, rounds);
                         return messageOne + '\n' + messagetwo;
                     }
                     
@@ -412,13 +418,12 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     gamePlayerTwo.updateScore();
                     displayGameInfo(rounds);
                     roundsPlayed++;
-                    game.clearBoard();
                     displayCurrentBoard();
                     if(roundsPlayed == rounds)
                     {
                         let messageOne =`Player ${gamePlayerOne.playerNum}: ${gamePlayerOne.playerName} with a score of ${gamePlayerOne.getScore()}`;
                         let messagetwo =`Player ${gamePlayerTwo.playerNum}: ${gamePlayerTwo.playerName} with a score of ${gamePlayerTwo.getScore()}`;
-                        displayWinWindow(gamePlayerTwo, gamePlayerOne);
+                        displayWinWindow(gamePlayerTwo, gamePlayerOne, rounds);
                         return messageOne + '\n' + messagetwo;
                     }
                 }
