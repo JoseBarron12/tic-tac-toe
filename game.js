@@ -96,6 +96,7 @@ function createGameboard() {
             gameBoardTiles.forEach(tile => {
                 tile.replaceChildren();
                 tile.classList.remove("tile-invalid");
+                tile.classList.remove("gameboard-item-win");
             });
         }
     }
@@ -137,11 +138,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(0,1,2, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(0,1,2);
                 return true;
             }
             else if (game.isLineFull(0,1,2, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(0,1,2);
                 return true;
             }
             return false
@@ -151,11 +154,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(3,4,5, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(3,4,5);
                 return true;
             }
             else if (game.isLineFull(3,4,5, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(3,4,5);
                 return true;
             }
             return false
@@ -165,11 +170,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(6,7,8, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(6,7,8);
                 return true;
             }
             else if (game.isLineFull(6,7,8, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(6,7,8);
                 return true;
             }
             return false
@@ -179,11 +186,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(0,3,6, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(0,3,6);
                 return true;
             }
             else if (game.isLineFull(0,3,6, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(0,3,6);
                 return true;
             }
             return false
@@ -193,11 +202,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(1,4,7, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(1,4,7);
                 return true;
             }
             else if (game.isLineFull(1,4,7, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(1,4,7);
                 return true;
             }
             return false
@@ -207,11 +218,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(2,5,8, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(2,5,8);
                 return true;
             }
             else if (game.isLineFull(2,5,8, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(2,5,8);
                 return true;
             }
             return false
@@ -221,11 +234,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(0,4,8, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(0,4,8);
                 return true;
             }
             else if (game.isLineFull(0,4,8, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(0,4,8);
                 return true;
             }
             return false
@@ -235,11 +250,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isLineFull(2,4,6, gamePlayerOne.playerSymbol))
             {
                 currentWinner = gamePlayerOne;
+                displayWinBoards(2,4,6);
                 return true;
             }
             else if (game.isLineFull(2,4,6, gamePlayerTwo.playerSymbol))
             {
                 currentWinner = gamePlayerTwo;
+                displayWinBoards(2,4,6);
                 return true;
             }
             return false
@@ -367,7 +384,20 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         game.clearBoard();
         gamePlayerOne.resetScore();
         gamePlayerTwo.resetScore();
+
     }
+
+    const displayWinBoards = (indexOne, indexTwo, indexThree) => {
+        const gameBoardTileOne = document.querySelector(`[id="${indexOne}"].board-item`);
+        gameBoardTileOne.classList.add("gameboard-item-win");
+        
+        const gameBoardTileTwo = document.querySelector(`[id="${indexTwo}"].board-item`);
+        gameBoardTileTwo.classList.add("gameboard-item-win");
+        
+        const gameBoardTileThree = document.querySelector(`[id="${indexThree}"].board-item`);
+        gameBoardTileThree.classList.add("gameboard-item-win");
+
+    };
 
     const playGame = (rounds) => {
         

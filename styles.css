@@ -387,3 +387,8 @@ option:checked {
   border: 2px solid black;
   border-radius: 15px;
 }
+
+.gameboard-item-win {
+  background-color: #1b1b1b;
+  scale: 1.01;
+}
