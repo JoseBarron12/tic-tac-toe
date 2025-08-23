@@ -105,7 +105,7 @@ body {
 .gameboard {
   width: max(600px, 75vmin);
   height: max(500px, 68vmin);
-  border: 1px solid black;
+  border: 2px solid black;
   align-self: center;
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -119,7 +119,6 @@ body {
 .game-info {
   width: max(600px, 75vmin);
   height: 170px;
-  border: 1px solid black;
   align-self: center;
   margin-bottom: 16px;
 }
@@ -158,6 +157,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .player-name {
@@ -203,6 +203,7 @@ dialog[open]{
   align-items: center;
   gap: 0px;
   border-radius: 15px;
+  border: 2px solid black;
 }
 
 .game-settings {
@@ -375,4 +376,14 @@ option:checked {
 
 .win-window>h3::after {
   content: " 🎉";
+}
+
+.current-gamemode {
+  align-self: center;
+}
+
+.current-gamemode>img {
+  margin-top: 8px;
+  border: 2px solid black;
+  border-radius: 15px;
 }
