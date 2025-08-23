@@ -113,6 +113,7 @@ body {
   gap: 8px;
   padding: 8px;
   position: relative;
+  border-radius: 15px;
 }
 
 .game-info {
@@ -129,6 +130,7 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
+  border-radius: 15px;
 }
 
 .board-icon {
@@ -149,6 +151,7 @@ body {
   padding: 0px 16px;
   justify-items: center;
   position: relative;
+  border-radius: 15px;
 }
 
 .player-info {
@@ -199,6 +202,7 @@ dialog[open]{
   flex-direction: column;
   align-items: center;
   gap: 0px;
+  border-radius: 15px;
 }
 
 .game-settings {
@@ -326,19 +330,49 @@ option:checked {
 }
 
 .win-window[open]{
-  height: 75%;
-  width: 75%;
+  height: max-content;
+  width: max-content;
   border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: center;
   justify-self: center;
-  gap: 0px;
   z-index: 999;
+  padding: 16px;
+  border-radius: 15px;
+  gap: 8px;
 }
 
+.win-window>h3 {
+  text-align: center;
+  font-family: "Finger Paint", sans-serif;
+}
 
 .win-window>p {
   white-space: pre-wrap;
+  text-align: center;
+  font-family: "Finger Paint", sans-serif;
+}
+
+.win-window>button {
+  border: 2px solid black;
+  background: none;
+  padding: 8px;
+  font-family: "Finger Paint", sans-serif;
+  border-radius: 5px;
+  margin-top: 4px;
+}
+
+.win-window>button:hover {
+  scale: 1.05;
+  box-shadow: 1px 2px black;
+}
+
+.win-window>h3::before {
+  content: "🎉 ";
+}
+
+.win-window>h3::after {
+  content: " 🎉";
 }
