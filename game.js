@@ -465,7 +465,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                 }  
                 if(game.isBoardFull())
                 {
-                    console.log("NO WINNER TIEEE");
+                    roundDone = true;
                 }
                 });
         });
