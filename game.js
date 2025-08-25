@@ -446,6 +446,18 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
             displayCurrentPlayer(currentPlayer.playerNum);
 
+            if(currentPlayer.playerName == "Computer")
+            {
+                game.addMove(currentPlayer.playerSymbol, computerPlay());
+                displayPlayedTile(computerPlay());
+                displayCurrentBoard();
+
+                removePastPlayer(currentPlayer.playerNum);
+                currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
+                displayCurrentPlayer(currentPlayer.playerNum);
+            }
+
+
             if(winCheck.checkAll())
             {
                 console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
