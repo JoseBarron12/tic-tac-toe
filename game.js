@@ -462,12 +462,14 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                         roundsPlayed = 0;
                     }
                 }
-                }  
-                if(game.isBoardFull())
-                {
-                    roundDone = true;
-                }
-                });
+            }  
+            if(game.isBoardFull())
+            {
+                roundDone = true;
+            }
+            
+            });
+        
         });
     }
 
