@@ -408,6 +408,13 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
         return choice;
     }
 
+    const displayTieBoard = () => {
+        const gameTiles = document.querySelectorAll(".board-item");
+        gameTiles.forEach(tile => {
+            tile.classList.add("gameboard-item-win");
+        });
+    }
+
 
     const playGame = (rounds) => {
         
@@ -490,8 +497,9 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                     }
                 }
             } 
-            if(game.isBoardFull())
+            else if(game.isBoardFull())
             {
+                displayTieBoard();
                 roundDone = true;
                 if(currentPlayer.playerName == "Computer")
                 {
