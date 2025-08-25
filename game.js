@@ -399,6 +399,16 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
 
     };
 
+    const computerPlay = () => {
+        let choice = getRandomNumRange(0,9);
+        while(!game.validateMove(choice))
+        {
+            choice = getRandomNumRange(0,9);
+        }
+        return choice;
+    }
+
+
     const playGame = (rounds) => {
         
         displayGameInfo(rounds);
@@ -427,6 +437,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             {
                 return;
             }
+            
             game.addMove(currentPlayer.playerSymbol, tileNum);
             displayPlayedTile(tileNum);
             displayCurrentBoard();
@@ -434,6 +445,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             removePastPlayer(currentPlayer.playerNum);
             currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
             displayCurrentPlayer(currentPlayer.playerNum);
+
             if(winCheck.checkAll())
             {
                 console.log(`WINNER: PLAYER ${currentWinner.playerName}`);
@@ -462,14 +474,15 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                         roundsPlayed = 0;
                     }
                 }
-            }  
+            } 
             if(game.isBoardFull())
             {
                 roundDone = true;
             }
             
             });
-        
+
+            
         });
     }
 
