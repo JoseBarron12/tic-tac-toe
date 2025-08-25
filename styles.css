@@ -116,6 +116,10 @@ body {
   height: auto;
 }
 
+.light {
+  opacity: 0%;
+}
+
 .dark {
   position: absolute;
   top: 0;
