@@ -675,3 +675,11 @@ function getRandomNumRange(min, max)
         }
     }
 }
+
+const toggleThemebtn = document.querySelector(".theme")
+
+toggleThemebtn.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme == 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+})

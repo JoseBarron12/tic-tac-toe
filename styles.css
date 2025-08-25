@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 
+
+:root[data-theme="light"] {
+  --text: hsl(264, 11%, 9%);
+  --background: hsl(267, 60%, 94%);
+  --primary: hsl(268, 11%, 26%);
+  --secondary: hsl(3, 11%, 66%);
+  --accent: hsl(39, 11%, 46%);
+}
+
+:root[data-theme="dark"] {
+  --text: hsl(264, 11%, 91%);
+  --background: hsl(267, 60%, 6%);
+  --primary: hsl(268, 11%, 74%);
+  --secondary: hsl(3, 11%, 34%);
+  --accent: hsl(39, 11%, 54%);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -64,12 +81,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background-color: var(--background);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  border: 1px solid;
+  border-bottom: 1px solid;
   padding: 0px 16px;
   width: 100vw;
 }
@@ -80,6 +98,8 @@ body {
 
 .title-text>h1,h4 {
   font-family: "Finger Paint", sans-serif;
+  color: var(--text);
+  user-select: none;
 }
 
 .theme {
