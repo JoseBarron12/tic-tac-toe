@@ -431,6 +431,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                 gameBoard.clearBoard();
                 displayCurrentBoard();
                 roundDone = false;
+                tilesPlayed = 0;
             }
 
             if(!game.validateMove(tileNum))
@@ -438,6 +439,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
                 return;
             }
             
+
             game.addMove(currentPlayer.playerSymbol, tileNum);
             displayPlayedTile(tileNum);
             displayCurrentBoard();
@@ -446,10 +448,11 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
             displayCurrentPlayer(currentPlayer.playerNum);
 
-            if(currentPlayer.playerName == "Computer")
+            if(currentPlayer.playerName == "Computer" && !gameBoard.isBoardFull())
             {
-                game.addMove(currentPlayer.playerSymbol, computerPlay());
-                displayPlayedTile(computerPlay());
+                const computerChoice = computerPlay();
+                game.addMove(currentPlayer.playerSymbol, computerChoice);
+                displayPlayedTile(computerChoice);
                 displayCurrentBoard();
 
                 removePastPlayer(currentPlayer.playerNum);
@@ -490,6 +493,12 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
             if(game.isBoardFull())
             {
                 roundDone = true;
+                if(currentPlayer.playerName == "Computer")
+                {
+                    removePastPlayer(currentPlayer.playerNum);
+                    currentPlayer = (currentPlayer == gamePlayerOne) ? gamePlayerTwo : gamePlayerOne;
+                    displayCurrentPlayer(currentPlayer.playerNum);
+                }
             }
             
             });
