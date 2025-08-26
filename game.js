@@ -115,7 +115,7 @@ function createGameboard() {
     };
 
     return{getCurrentGameBoard, addMove, validateMove, displayBoard, isLineEmpty, isLineFull, isBoardFull, clearBoard, displayInitialBoard};
-}
+};
 
 function createPlayer(playerName, playerNum, playerSymbol) {
     let score = 0;
@@ -124,7 +124,7 @@ function createPlayer(playerName, playerNum, playerSymbol) {
     const resetScore = () => score = 0;
 
     return {playerName, playerNum, playerSymbol, getScore, updateScore, resetScore};
-}
+};
 
 function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game)
 {
@@ -516,7 +516,7 @@ function createGame(playerOne, playerOneSymbol, playerTwo, playerTwoSymbol, game
     }
 
     return{playGame};
-}
+};
 
 const gameBoard = createGameboard();
 gameBoard.displayInitialBoard();
@@ -674,7 +674,7 @@ function getRandomNumRange(min, max)
             return num;
         }
     }
-}
+};
 
 const toggleThemebtn = document.querySelector(".theme")
 
@@ -697,4 +697,4 @@ toggleThemebtn.addEventListener("click", () => {
     }
     
     document.documentElement.setAttribute('data-theme', newTheme);
-})
+});

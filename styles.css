@@ -2,19 +2,20 @@
 
 
 :root[data-theme="light"] {
-  --text: hsl(264, 11%, 9%);
-  --background: hsl(267, 60%, 94%);
-  --primary: hsl(268, 11%, 26%);
-  --secondary: hsl(3, 11%, 66%);
-  --accent: hsl(39, 11%, 46%);
+  --text: hsl(240, 60%, 1%);
+  --background: hsl(240, 60%, 99%);
+  --primary: hsl(240, 3%, 94%);
+  --secondary: hsl(0, 0%, 89%);
+  --accent: hsl(240, 81%, 44%);
+  --icon: invert(1%) sepia(14%) saturate(3468%) hue-rotate(205deg) brightness(85%) contrast(100%);
 }
-
 :root[data-theme="dark"] {
-  --text: hsl(264, 11%, 91%);
-  --background: hsl(267, 60%, 6%);
-  --primary: hsl(268, 11%, 74%);
-  --secondary: hsl(3, 11%, 34%);
-  --accent: hsl(39, 11%, 54%);
+  --text: hsl(240, 60%, 99%);
+  --background: hsl(240, 3%, 4%);
+  --primary: hsl(240, 3%, 6%);
+  --secondary: hsl(0, 0%, 11%);
+  --accent: hsl(240, 81%, 56%);
+  --icon: invert(93%) sepia(16%) saturate(780%) hue-rotate(188deg) brightness(108%) contrast(99%);
 }
 
 *, *::before, *::after {
@@ -87,7 +88,7 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid;
+  border-bottom: 2px solid var(--primary);
   padding: 0px 16px;
   width: 100vw;
 }
@@ -105,10 +106,12 @@ body {
 .theme {
   position: relative;
   align-self: center;
+  fill: var(--text);
 }
 
 .settings {
   display: flex;
+  fill: var(--text);
 }
 
 .icon {
@@ -117,19 +120,19 @@ body {
 }
 
 .light {
-  opacity: 0%;
+  opacity: 100%;
 }
 
 .dark {
   position: absolute;
   top: 0;
   rotate: 330deg;
+  opacity: 0%;
 }
 
 .gameboard {
   width: max(600px, 75vmin);
   height: max(500px, 68vmin);
-  border: 2px solid black;
   align-self: center;
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -138,17 +141,18 @@ body {
   padding: 8px;
   position: relative;
   border-radius: 15px;
+  background-color: var(--primary);
 }
 
 .game-info {
   width: max(600px, 75vmin);
   height: 200px;
   align-self: center;
-  margin-bottom: 16px;
+  padding: 8px;
 }
 
 .board-item {
-  background-color: black;
+  background-color: var(--secondary);
   color: white;
   display: flex;
   justify-content: center;
@@ -171,10 +175,10 @@ body {
 .game-info {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  padding: 0px 16px;
   justify-items: center;
   position: relative;
   border-radius: 15px;
+  background-color: var(--primary);
 }
 
 .player-info {
@@ -182,6 +186,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  color: var(--text);
 }
 
 .player-name {
@@ -227,7 +232,9 @@ dialog[open]{
   align-items: center;
   gap: 0px;
   border-radius: 15px;
-  border: 2px solid black;
+  background-color: var(--primary);
+  color: var(--text);
+  padding-top: 8px;
 }
 
 .game-settings {
@@ -259,21 +266,23 @@ dialog[open]{
 
 [type=radio] + img {
   cursor: pointer;
+
 }
 
 [type=radio]:checked + img {
   scale: 1.1;
-  box-shadow: 1px 2px black;
+  box-shadow: 1px 2px var(--background);
   border-radius: 5px;
 }
 
 .game-buttons>button {
-  border: 1px solid black;
-  background: none;
-  padding: 4px;
+  border: 1px solid var(--background);
+  background: var(--text);
+  padding: 8px;
   font-family: "Finger Paint", sans-serif;
   margin-top: 4px;
   border-radius: 5px;
+  color: var(--background);
 }
 
 .game-buttons>button:hover {
@@ -288,6 +297,11 @@ select {
   border: none;
   background: none;
   font-family: "Finger Paint", sans-serif;
+  color: var(--text);
+}
+
+select:hover {
+  scale: 1.15;
 }
 
 option:checked {
@@ -302,19 +316,18 @@ option:checked {
   padding: 4px;
 }
 
-.player-one-info:hover {
-  outline: 2px solid black;
-  border-radius: 5px;
-}
-
 .player-name-info>input {
   border: none;
   width: 75px;
-  border-bottom: 2px solid black;
   padding-left: 2px;
+  background-color: var(--primary);
+  border-bottom: 1px solid var(--text);
+  color: var(--text);
 }
+
 .player-name-info>input:hover {
-  outline: 2px solid black;
+  outline: 0.5px solid var(--text);
+  scale: 1.05;
   border-radius: 5px;
 }
 
@@ -324,11 +337,6 @@ option:checked {
   font-family: "Finger Paint", sans-serif;
   align-self: center;
   padding: 4px;
-}
-
-.player-two-info:hover {
-  outline: 2px solid black;
-  border-radius: 5px;
 }
 
 .user-valid {
@@ -350,8 +358,8 @@ option:checked {
 }
 
 .player-active {
-  outline: 2px solid black;
-  border-radius: 5px;
+  background-color: var(--secondary);
+  border-radius: 15px;
 }
 
 .win-window[open]{
@@ -381,12 +389,13 @@ option:checked {
 }
 
 .win-window>button {
-  border: 2px solid black;
-  background: none;
+  background: var(--text);
+  border: 2px solid var(--background);
   padding: 8px;
   font-family: "Finger Paint", sans-serif;
   border-radius: 5px;
   margin-top: 4px;
+  color: var(--background);
 }
 
 .win-window>button:hover {
@@ -410,9 +419,10 @@ option:checked {
   margin-top: 8px;
   border: 2px solid black;
   border-radius: 15px;
+  filter: var(--icon);
 }
 
 .gameboard-item-win {
-  background-color: #1b1b1b;
+  background-color: var(--background);
   scale: 1.01;
 }
